@@ -54,3 +54,11 @@ Set your recipient email address in the Gmail node.
 Activate:
 
 Toggle the workflow switch to Active at the top right of your canvas.
+
+Workflow Screenshot
+
+![n8n Canvas](./assets/Workflow.png)
+
+## Email Result Screenshot
+
+![Email Output](./assets/EmailResult.png)
