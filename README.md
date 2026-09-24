@@ -1,4 +1,4 @@
-Automated Daily Weather Emailer (n8n Workflow)
+**Automated Daily Weather Emailer (n8n Workflow)**
 
 
 An automated, scheduled workflow built using n8n that fetches current weather conditions for a specified location every morning and sends a personalized email summary via Gmail.
