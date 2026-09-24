@@ -1,0 +1,108 @@
+{
+  "name": "Daily Weather Automation WorkFlow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "48c46ee0-38f5-4401-9265-dfc82e3665d1",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "format": "imperial",
+        "cityName": "Kathmandu"
+      },
+      "type": "n8n-nodes-base.openWeatherMap",
+      "typeVersion": 1,
+      "position": [
+        176,
+        0
+      ],
+      "id": "228616fc-40bc-4ec9-8285-2d095fc95423",
+      "name": "OpenWeatherMap",
+      "credentials": {
+        "openWeatherMapApi": {
+          "id": "ETaGjjhM04ZEbigc",
+          "name": "OpenWeatherMap account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "raynard0607@gmail.com",
+        "subject": "Daily Weather Update",
+        "emailType": "text",
+        "message": "=Good Morning, Raynard! The Current temperature is   {{ $json.main.temp }} in {{ $json.name }} with a temperature range of {{ $json.main.temp_min }} to {{ $json.main.temp_max }} and wind speed of {{ $json.wind.speed }} with a pressure of {{ $json.main.pressure }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        368,
+        0
+      ],
+      "id": "36c10445-d1e7-48cf-9b20-f3c3abd52f0e",
+      "name": "Send a message",
+      "webhookId": "12b0f0e1-a9a2-48b3-859a-966cd675310d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "hiKznwGpBtmQygOL",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenWeatherMap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenWeatherMap": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "cfb8f8c2-82e6-4158-b822-e7c18d598519",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "18b0d23652249ec24cfc2bf95e77954c947048e44c9bec1faa5f7e50ecfb025f"
+  },
+  "nodeGroups": [],
+  "id": "kLGlAK2CF6M9JcHT",
+  "tags": []
+}
